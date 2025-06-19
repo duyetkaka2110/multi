@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>player</title>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+
+</head>
+
+<body>
+    <div id="video"></div>
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const key = urlParams.get('key');
+        const cam = urlParams.get('cam');
+        const baseUrl = "-pull.bpmedialive.com/saruminh/";
+    </script>
+    <link rel="stylesheet" href="index.min.css">
+    <script src="index.min.js"></script>
+    <script>
+        function getRealPlayUrl(resolution) {
+            const result = "https://" + key + baseUrl + cam + getSuffixPlay(resolution);
+            console.log('url generated: ', result);
+            return result;
+        }
+
+        function getSuffixPlay(resolution) {
+            let suffix = "";
+            if (resolution) {
+                suffix = '_' + resolution;
+            }
+            suffix += '.sdp';
+            return suffix;
+        }
+        const playlist = [
+            {
+                url: getRealPlayUrl('2'),
+                definition: '720p',
+                text: { 'en': '720p', 'zh-cn': '720p' },
+            },
+            // {
+            //     url: getRealPlayUrl('sd'),
+            //     definition: '480p',
+            //     text: { 'en': '480p', 'zh-cn': '480p' },
+            // },
+            // {
+            //     url: getRealPlayUrl('ld'),
+            //     definition: '320p',
+            //     text: { 'en': '320p', 'zh-cn': '320p' },
+            // },
+        ];
+        const saru_link = getRealPlayUrl('2');
+        var playerSdk = new SaruPlayer({
+            lang: 'en',
+            // id: 'video',
+            url: saru_link,
+            playlist: playlist,
+            defaultDefinition: '720p',
+            isLive: true,
+            width: 700,
+            height: 400,
+            autoplay: true,
+            autoplayMuted: false,
+            vodLogOpts: {
+                line_app_id: 562771,
+                tag: 'normal'
+            }
+        });
+    </script>
+</body>
+
+</html>
