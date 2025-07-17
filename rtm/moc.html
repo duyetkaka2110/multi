@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>player</title>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+
+
+
+        const appId = "6868686868";
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const streamKey = urlParams.get('streamKey');
+        const userId = "";//urlParams.get('userId');
+        const urlPlay = urlParams.get('url');
+        const numberrow = urlParams.get('row');
+        $(document).ready(function () {
+            html = '';
+            for (i = 0; i < numberrow; i++) {
+                html += '<tr>';
+                html += '<td>';
+                html += '  <iframe src="'+urlPlay+'"';
+                html += '     style="height: 405px; width: 720px; overflow: scroll; border: none; visibility: visible; position: absolute; bottom: 0px; left: 0px; transform: matrix(0.507051, 0, 0, 0.507051, 5.07051, -349.216); transform-origin: 0px 100% 0px; opacity: 1;"';
+                html += '     allow="fullscreen;accelerometer;gyroscope" allowfullscreen=""></iframe>';
+                html += ' <iframe src="'+urlPlay+'" style="height: 150px; "></iframe>';
+                html += '</td>';
+                html += '<td><iframe src="'+urlPlay+'" style="height: 150px; "></iframe>';
+                html += '</td>';
+                html += '<td><iframe src="'+urlPlay+'" style="height: 150px; "></iframe>';
+                html += '</td>';
+                html += '<td><iframe src="'+urlPlay+'" style="height: 150px; "></iframe>';
+                html += '</td>';
+                html += '</tr>';
+            }
+            $("#table").html(html);
+        })
+    </script>
+</head>
+
+<body>
+    <table id="table">
+
+       
+    </table>
+    <script>
+        // Link video sẽ điền trong mục quản lý.
+        var saru_link = "https://rgqtijmaqstr-pull.bpmedialive.com/rtc/bo1_hd.sdp";
+    </script>
+    <link rel="stylesheet" href="index.min.css">
+    <!-- <script src="index.min.js"></script>
+    <script src="saruplay.js"></script> -->
+</body>
+
+</html>
